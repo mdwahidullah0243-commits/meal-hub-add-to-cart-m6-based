@@ -2,9 +2,10 @@ import { useState } from 'react'
 import './App.css'
 import FoodSection from './components/FoodSection/FoodSection'
 import Navbar from './components/Navbar/Navbar'
+import { getFoodItemFromLocalStorage } from './lib/localStorage';
 
 function App() {
-  const [addToCart, setAddToCart] = useState([]);
+  const [addToCart, setAddToCart] = useState(() => getFoodItemFromLocalStorage());
 
   return (
     <>

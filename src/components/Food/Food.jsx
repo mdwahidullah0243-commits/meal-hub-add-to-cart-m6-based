@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { addFoodItemToLocalStorage } from "../../lib/localStorage";
 
 const Food = ({ food, addToCart, setAddToCart }) => {
     const [addToCartContent, setAddToCartContent] = useState(false);
@@ -8,6 +9,8 @@ const Food = ({ food, addToCart, setAddToCart }) => {
     const handleAddToCart = () => {
         setAddToCartContent(true);
         setAddToCart([...addToCart, food]);
+
+        addFoodItemToLocalStorage(food);
     };
 
     return (

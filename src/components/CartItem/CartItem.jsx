@@ -1,10 +1,13 @@
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
+import { removeFoodItemFromLocalStorage } from "../../lib/localStorage";
 
 const CartItem = ({ item, addToCart, setAddToCart }) => {
     const handleRemoveItemFromCart = (cartItem) => {
         const filteredItemOfCart = addToCart.filter(item => item.idMeal !== cartItem.idMeal);
-        setAddToCart(filteredItemOfCart)
+        setAddToCart(filteredItemOfCart);
+
+        removeFoodItemFromLocalStorage(cartItem)
     };
 
     return (

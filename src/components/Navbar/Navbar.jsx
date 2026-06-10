@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import CartItem from "../CartItem/CartItem";
 import EmptyCart from "../ui/EmptyCart";
+import { removeAllFoodItemFromLocalStorage } from "../../lib/localStorage";
 
 
 const Navbar = ({ addToCart, setAddToCart }) => {
@@ -16,7 +17,13 @@ const Navbar = ({ addToCart, setAddToCart }) => {
             item={item}
             isActive={isActive}
             setIsActive={setIsActive} />
-    ))
+    ));
+
+    const handleClearAll = () => {
+        setAddToCart([]);
+
+        removeAllFoodItemFromLocalStorage('clear');
+    }
 
     return (
         <div className="bg-[#deb887] py-1 shadow-sm">
@@ -70,14 +77,14 @@ const Navbar = ({ addToCart, setAddToCart }) => {
                                         Shopping Cart
                                     </h3>
 
-                                    <button onClick={() => setAddToCart([])} className="btn btn-error h-auto py-1 px-2 text-slate-200">
+                                    <button onClick={handleClearAll} className="btn btn-error h-auto py-1 px-2 text-slate-200">
                                         Clear All
                                     </button>
                                 </div>
 
                                 {
                                     addToCart.length === 0
-                                        ? 
+                                        ?
                                         <EmptyCart />
                                         :
                                         <>
